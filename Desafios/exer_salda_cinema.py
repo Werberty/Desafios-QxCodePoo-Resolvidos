@@ -1,3 +1,10 @@
+'''
+O objetivo dessa atividade é implementar o sistema de alocação de uma única sala
+de cinema. Se existem cadeiras livres, os clientes podem reservá-las. Também
+podem desistir da reserva. O sistema deve mostrar quem está sentado em cada
+cadeira.
+'''
+
 class Cliente:
     def __init__(self, nome, telefone, id) -> None:
         self.nome = nome
