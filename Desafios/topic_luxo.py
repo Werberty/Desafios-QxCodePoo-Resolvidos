@@ -1,4 +1,5 @@
 from abc import ABC
+from ast import While
 
 class Passageiro(ABC):
     def __init__(self, nome, idade) -> None:
@@ -24,24 +25,31 @@ class Topic:
     def cadeiras(self):
         return self._cadeiras
     
+    def encontrar_lugar(self, idade):
+        cadeiras_pref = [n for n, c in enumerate(self.cadeiras) if c=='@']
+        cadeiras_nao_pref = [n for n, c in enumerate(self.cadeiras) if c=='=']
+        if idade >= 60:
+            if len(cadeiras_pref) != 0:
+                return cadeiras_pref[0]
+            elif len(cadeiras_nao_pref) !=  0:
+                return cadeiras_nao_pref[0]
+        elif idade < 60 and idade > 0:
+            if len(cadeiras_nao_pref) != 0:
+                return cadeiras_nao_pref[0]
+            elif len(cadeiras_pref) != 0:
+                return cadeiras_pref[0]
+    
     def inserir_passageiro(self, nome, idade):
         verificador = self.verificar_passageiro(nome)
         if verificador:
             passageiro = Passageiro(nome, idade)
-            for n, cadeira in enumerate(self.cadeiras):
-                if passageiro.idade >= 60:
-                    if cadeira == '@':
-                        self.cadeiras[n] += passageiro.nome
-                        return
-                    elif cadeira == '=':
-                        self.cadeiras[n] += passageiro.nome
-                        return
-                else:
-                    if cadeira == '=':
-                        self.cadeiras[n] += passageiro.nome
-                        return
-    
-    def verificar_passageiro(self, nome): #verificar possiveis problemas ainda
+            cadeira_vazia = self.encontrar_lugar(passageiro.idade)
+            if cadeira_vazia is not None:
+                self.cadeiras[cadeira_vazia] += passageiro.nome
+            else:
+                print('Topic Lotada')
+
+    def verificar_passageiro(self, nome):
         verificador = True
         for cadeira in self.cadeiras:
             cadeira = cadeira.replace('@', '')
@@ -59,9 +67,4 @@ class Topic:
 
 
 topic = Topic(5, 2)
-topic.inserir_passageiro('davi', 17)
-topic.inserir_passageiro('joao', 103)
-topic.inserir_passageiro('ana', 35)
-topic.inserir_passageiro('rex', 20)
-topic.inserir_passageiro('bia', 16) #não está adicionando a bia
 topic.mostrar_cadeiras()
