@@ -1,4 +1,6 @@
 '''
+Bichinho Virtual Tamaguhi
+
 Você deve implementar um simulador de bichinho virtual. 
 Ele poderá comer, brincar, dormir e tomar banho. E eventualmente morrerá, 
 se você não cuidar bem dele.

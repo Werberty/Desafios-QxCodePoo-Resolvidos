@@ -1,16 +1,28 @@
+"""
+Topic de luxo
+
+Aqui, vamos implementar um sistema de alocação de passageiros 
+em uma topic. Nossa topic tem uma quantidade máxima de passageiros,
+mas também define alguns assentos preferenciais.
+"""
 from abc import ABC
 import re
 
-'''O objetivo dessa atividade é exercitar o que vocês aprenderam 
-no cinema com algumas variações. Aqui, vamos implementar um 
-sistema de alocação de passageiros em uma topic. Nossa topic 
-tem uma quantidade máxima de passageiros, mas também define alguns 
-assentos preferenciais.
-'''
-
 
 class Passageiro(ABC):
+    """
+    Classe passageiro
+
+    Contém os atributos básicos de todos os passageiros
+    da topic.
+    """
     def __init__(self, nome, idade) -> None:
+        """
+        :param nome: o nome do passageiro
+        :type nome: str
+        :param idade: idade do passageiro
+        :type idade: int
+        """
         self._nome = nome
         self._idade = idade
 
@@ -24,7 +36,7 @@ class Passageiro(ABC):
 
 
 class Topic:
-    def __init__(self, lotacao_max, preferenciais):
+    def __init__(self, lotacao_max, preferenciais) -> None:
         self._lotacao_max = lotacao_max
         self._preferenciais = preferenciais
         self._cadeiras = list(
@@ -108,3 +120,4 @@ topic.remover_passageiro('marcelo')
 topic.remover_passageiro('ana')
 topic.inserir_passageiro('bia', 33)
 topic.mostrar_cadeiras()
+help(Passageiro)
