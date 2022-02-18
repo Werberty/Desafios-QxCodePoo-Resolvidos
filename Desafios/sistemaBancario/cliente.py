@@ -14,9 +14,9 @@ class Pessoa:
 
 
 class Cliente(Pessoa):
-    def __init__(self, nome, idade) -> None:
+    def __init__(self, nome, idade, conta) -> None:
         super().__init__(nome, idade)
-        self.conta = None
+        self.conta = conta
 
     def criar_conta(self, conta):
         self.conta = conta

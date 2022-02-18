@@ -1,18 +1,14 @@
-class banco:
+class Banco:
     def __init__(self) -> None:
-        self.contas = []
         self.clientes = []
     
-    def agregar(self, conta, cliente):
-        self.contas = self.contas.append(conta)
-        self.clientes = self.clientes.append(cliente)
+    def agregar(self, cliente):
+        self.clientes.append(cliente)
     
-    def checar(self, cliente, conta):
+    def checar(self, cliente):
         verificador = False
-        for cont in self.contas:
-            if cont == conta:
-                verificador = True
-        for cli in self.clientes:
-            if cli == cliente:
-                verificador = True
+        for dados in self.clientes:
+            if cliente == dados:
+                if dados.conta.agencia == cliente.conta.agencia and dados.conta == cliente.conta:
+                    verificador = True
         return verificador
