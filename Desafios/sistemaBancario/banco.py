@@ -11,4 +11,6 @@ class Banco:
             if cliente == dados:
                 if dados.conta.agencia == cliente.conta.agencia and dados.conta == cliente.conta:
                     verificador = True
+        if not verificador:
+            print('Cliente não é desse banco.')
         return verificador
