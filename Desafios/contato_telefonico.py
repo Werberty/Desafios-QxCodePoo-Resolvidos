@@ -18,6 +18,10 @@ class Contato:
                 key_remove = key
         del self._telefones[key_remove]
     
+    def atualizar_contato(self, nome, *args):
+        self._telefones = dict(args)
+        self._nome = nome
+    
     def show(self):
         for n, (label, tele) in enumerate(self._telefones.items()):
             print(f'[{n}:{label}:{tele}]', end='')
@@ -28,5 +32,6 @@ if __name__ == '__main__':
     c1.adicionar_telefone('oi', '99')
     c1.adicionar_telefone('casa', '11')
     c1.remover_telefone(1)
+    c1.atualizar_contato('Bety', ('tim', '9087'), ('fixo', '11021'))
     c1.show()
 
