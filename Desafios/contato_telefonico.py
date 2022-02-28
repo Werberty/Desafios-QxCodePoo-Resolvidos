@@ -3,28 +3,36 @@ O objetivo dessa atividade é implementar uma classe responsável
 por guardar um único contato da agenda telefônica do seu celular. 
 Cada contato pode ter vários telefones.
 '''
+class Telefone:
+    def __init__(self, label, numero) -> None:
+        self._label = label
+        self._numero = numero
+    
+    def validar(self):
+        pass
+
 
 class Contato:
     def __init__(self, nome:str='Vazio') -> None:
         self._nome = nome
-        self._telefones = {}
+        self._telefones = []
         
     def adicionar_telefone(self, label: str, telefone: str):
-        self._telefones[label] = telefone
+        self._telefones.append(Telefone(label, telefone))
     
     def remover_telefone(self, indice):
-        for n, key in enumerate(self._telefones):
-            if indice == n:
-                key_remove = key
-        del self._telefones[key_remove]
+        del self._telefones[indice]
     
     def atualizar_contato(self, nome, *args):
-        self._telefones = dict(args)
         self._nome = nome
+        self._telefones = []
+        for fone in args:
+            label, num = fone
+            self._telefones.append(Telefone(label, num))
     
     def show(self):
-        for n, (label, tele) in enumerate(self._telefones.items()):
-            print(f'[{n}:{label}:{tele}]', end='')
+        for n, fone in enumerate(self._telefones):
+            print(f'[{n}:{fone._label}:{fone._numero}]', end='')
         print()
 
 if __name__ == '__main__':
